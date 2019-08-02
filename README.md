@@ -10,6 +10,8 @@ Despite being a proprietary software, Microsoft Access is a reliable and easy-to
 
 ## Features
 
+![Ledger editing example](images/ledger.PNG)
+
   - All the Access functionalities, for sure! (sorting, filtering, etc.)
   - Import and keep track of bank CSV to avoid duplicate entries. (CSV format customizable with VBA code)
   - Categorize income/expenses with both purpose (to separate areas of business) and category (to help with tax filing). Example:
@@ -38,11 +40,15 @@ Open the template file with Microsoft Access and follow the prompt to create you
 
 Open `ExpenseType` table, and create: `personal`, `business`, `transfer`, `exclude`. (Don't need to separate your businesses now - see next step.)
 
+![Expense types example](images/expense_types.PNG)
+
 #### 1.2 Define expense purposes
 
 This is where you split your businesses, or even personal spendings. Enter `PurposeName`, select an `ExpenseType`, and set an `Order` as integer as a preferred ordering in ledger interface later on.
 
 Example:
+
+![Expense purposes example](images/purpose.PNG)
 
 #### 1.3 Define expense categories
 
@@ -50,11 +56,15 @@ Check with your tax bureau for the expense categories that you need to pull out 
 
 Example setup in Quebec, Canada:
 
+![Expense categories example](images/expense_categories.PNG)
+
 #### 1.4 Define payable/collectible sales taxes
 
 Same as 1.3, check with your tax bureau for the sales taxes you may be paying or collecting, and enter them into the table `Tax`.
 
 Example setup in Quebec, Canada:
+
+![Sales taxes example](images/sales_taxes.PNG)
 
 #### 1.5 Enter your banking accounts
 
@@ -62,10 +72,13 @@ Enter all the banks you want to track into the table `BankAccount`, both debit a
 
 Example:
 
+![Bank accounts example](images/accounts.PNG)
+
 ### 2. Import CSV
 
 Now you're all set! The next step is to import CSV files via the form interface:
 
+![Import CSV form](images/form_import.PNG)
 
 #### 2.1 Adapt VBA code to work with the CSV files from your bank (it's not hard, trust me)
 
