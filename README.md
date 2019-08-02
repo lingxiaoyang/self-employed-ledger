@@ -2,6 +2,8 @@
 
 Easy accounting for self-employed person based on Microsoft Access. (When you buy everything from one or two credit cards, it's important to keep track!)
 
+![Ledger editing example](images/ledger.PNG)
+
 You'll need to adapt some VBA code to your cases. So you should somewhat be a coder yourself!
 
 ## Why Microsoft Access?
@@ -9,8 +11,6 @@ You'll need to adapt some VBA code to your cases. So you should somewhat be a co
 Despite being a proprietary software, Microsoft Access is a reliable and easy-to-use tool to manage SQL-based data structures. It is also a part of Office 365 subscription.
 
 ## Features
-
-![Ledger editing example](images/ledger.PNG)
 
   - All the Access functionalities, for sure! (sorting, filtering, etc.)
   - Import and keep track of bank CSV to avoid duplicate entries. (CSV format customizable with VBA code)
