@@ -1,6 +1,6 @@
 # Self-Employed Ledger
 
-Easy accounting for self-employed person based on Microsoft Access. (When you buy everything from one or two credit cards, it's important to keep track!)
+Easier accounting for self-employed person based on Microsoft Access. (When you buy everything from one or two credit cards, it's important to keep track!)
 
 ![Ledger editing example](images/ledger.PNG)
 
@@ -12,17 +12,18 @@ Despite being a proprietary software, Microsoft Access is a reliable and easy-to
 
 ## Features
 
-  - All the Access functionalities, for sure! (sorting, filtering, etc.)
+  - Sorting, filtering, ... All the Access functionalities, for sure!
   - Import and keep track of bank CSV to avoid duplicate entries. (CSV format customizable with VBA code)
   - Categorize income/expenses with both purpose (to separate areas of business) and category (to help with tax filing). Example:
     - Personal x Medical expenses
     - Business #1 x Advertising
     - Business #2 x Property taxes
   - Label income/expenses with sales taxes.
+  - Multi-currency support on different bank accounts.
   - Attach invoices to entries.
   - Restricted editing to avoid accidental changes to date, description, amount, etc.
   - Manual splitting of an entry when needed (example: splitting CCA and ongoing expenses purchased together).
-  
+
 In the future as I continue to use it, you can expect:
 
   - Overview of a certain period
@@ -38,7 +39,7 @@ Open the template file with Microsoft Access and follow the prompt to create you
 
 #### 1.1 Define expense types
 
-Open `ExpenseType` table, and create: `personal`, `business`, `transfer`, `exclude`. (Don't need to separate your businesses now - see next step.)
+Open `ExpenseType` table, and create: `personal`, `business`, `transfer`, `exclude` and `mixed`. (Don't need to separate your businesses now - see next step.)
 
 ![Expense types example](images/expense_types.PNG)
 
@@ -62,7 +63,7 @@ Example setup in Quebec, Canada:
 
 Same as 1.3, check with your tax bureau for the sales taxes you may be paying or collecting, and enter them into the table `Tax`.
 
-Example setup in Quebec, Canada:
+Tip: set up a `Z-None` item to label tax-exempt purchases, to remind that we have reviewed the invoice.
 
 ![Sales taxes example](images/sales_taxes.PNG)
 
@@ -82,32 +83,34 @@ Now you're all set! The next step is to import CSV files via the form interface:
 
 #### 2.1 Adapt VBA code to work with the CSV files from your bank (it's not hard, trust me)
 
-To make it work with your bank, you will need to edit the VBA code by double-clicking the module `Converted Macro- DoImportCSV` (certainly, I'll clean this name later). 
+To make it work with your bank, you will need to edit the VBA code by double-clicking the module `Converted Macro- DoImportCSV` (certainly, I'll clean this name later).
 
 Press Ctrl-F and find with `If acName`. The cursor will highlight the condition branches reading the bank that you're selecting. If you don't see the bank that you are using, go ahead and add yours into the `If` block. What you will need to change here are:
 
   - The condition (`acName like ...` or `acName = ...`); and
   - The name of function (`ImportXXXXCSV`).
-  
+
 Then, go to the bottom of the code, copy the last `Private Function` block (from `Private Function` until `End Function`), and duplicate it.
 
 *First*, adapt the name of function (the same as what you just changed above, `ImportXXXXCSV`). You will need to adapt the 1st line (`Private Function ImportXXXXCSV(.....`) and the last line above `End Function` (`Set ImportXXXXCSV = DataLines`).
 
 *Second*, open your CSV file exported from your bank (if your bank only provides PDF statements, see "FAQ" section below), and specify from which column you can extract following information:
- 
+
   - Date of transaction: easier to be all-numerical, like `2019-06-01` or `6/1/2019` or so. A difficult one would be `Jun 1 2019` which needs more difficult VBA code to parse, depending on your coding level.
   - Description line 1
   - Description line 2: this could be empty, or could be assembled from multiple fields, as long as it will help you later on.
   - Amount: some banks separate debits and credits into two columns. Keep in mind, what you earn will be entered positive, and what you spend will be negative.
-  
+
 *Finally*, adapt the private function `ImportXXXXCSV`. In preset examples, you will find:
 
   - How to skip the header row;
-  - How to parse a `YYYY-mm-dd` formatted date and build VBA date object;
+  - How to parse a `YYYY-mm-dd` formatted date and build VBA date object using `CDate()`;
+    - Example 1: `CDate("09/30/2019")`
+    - Example 2: `CDate("Sep 30 2019")`
   - How to build a decimal object for the amount.
-  
+
 Keep in mind:
-  
+
   - Look for `dict("tranDate")`, `dict("desc1")`, `dict("desc2")`, and `dict("amount")`.
   - `Items(1)` corresponds to the value of *first* column of the CSV file.
 
@@ -120,8 +123,8 @@ Close the CSV file you're importing if it's opened by Excel. Double-click "Impor
   - The number of entries imported;
   - The start date of this batch of import;
   - The end date of this batch of import.
-  
-To verify, double-click `BankCSV` table, and you will see a new record there with the CSV file you just imported. 
+
+To verify, double-click `BankCSV` table, and you will see a new record there with the CSV file you just imported.
 
 ### 3. Review imported entries
 
