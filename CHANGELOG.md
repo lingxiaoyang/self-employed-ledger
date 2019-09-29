@@ -1,15 +1,9 @@
 # 2019-09-28
 
-Added:
-
-- Multi-currency support on back account level.
-- Colors of income/expense.
-- Visual cue for business expenses.
-
-Changed:
-
-- Ordering of ledger input fields.
+- Add multi-currency support.
+- Add colors for income/expense and visual cue for business-typed expenses.
+- Reorder ledger fields in editing mode.
 
 # 2019-08-02
 
-Published first version.
+- Publish first version.
