@@ -6,7 +6,7 @@
 
 ### Why Microsoft Access?
 
-Despite a proprietary software, Microsoft Access is reliable and easy-to-use and comes with Office 365 subscription.
+Despite a proprietary software, Microsoft Access is reliable and easy-to-use and comes with Office 365 subscription on Windows.
 
 ### Database ERD
 
